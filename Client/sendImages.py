@@ -10,12 +10,12 @@ def sendImage(frame, name):
 
 cap = cv2.VideoCapture(0)
 
-asyncUpload = True if input("Async upload? ") in ["y", "yes", "Yes", "Y"] else False
+multiThreadUpload = True if input("Multi thread upload? ") in ["y", "yes", "Yes", "Y"] else False
 
 name = 0
 while(True):
     ret, frame = cap.read(0)
-    if asyncUpload:
+    if multiThreadUpload:
         thr = threading.Thread(target=sendImage, args=(frame, name), kwargs={})
         thr.start()
     else:
